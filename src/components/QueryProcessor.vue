@@ -50,6 +50,7 @@ import {
 import AceEditor from "ace-editor-vue3";
 import "brace/mode/javascript";
 import "brace/theme/monokai";
+import JQLService from '@/services/jql'
 
 export default {
     components: {
@@ -62,7 +63,14 @@ export default {
         });
 
         const parseData = () => {
-            obj.jsonOutput = obj.jsonInput;
+            JQLService.getUser(obj.jsonInput)
+                .then(response => {
+                    obj.jsonOutput = response.data;
+                    console.log(obj.jsonOutput);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
         }
 
         return {
