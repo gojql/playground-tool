@@ -1,4 +1,4 @@
-<template>
+<template lang="lang">
 <div>
     <div class="container-fluid">
         <div class="row flex-nowrap">
@@ -22,17 +22,17 @@
                 <div class="row mt-2 gx-3">
                     <div class="col-6">
                         <div class="p-3 border bg-light">
-                            <div class="col">
+                            <div class="col" style="height:75vh">
                                 <label class="form-label" for="jsonInput">JSON String</label>
-                                <textarea class="form-control" id="jsonInput" v-model="obj.jsonInput" rows="2"></textarea>
+                                <AceEditor v-model:codeContent="obj.jsonInput" v-model:editor="editor" :options="options" :lang="lang" width="100%" height="95%" />
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="p-3 border bg-light">
-                            <div class="col">
+                            <div class="col" style="height:75vh">
                                 <label class="form-label" for="jsonInput">Query Result</label>
-                                {{obj.jsonOutput}}
+                                <pre>{{obj.jsonOutput}}</pre>
                             </div>
                         </div>
                     </div>
@@ -47,8 +47,14 @@
 import {
     reactive
 } from 'vue';
+import AceEditor from "ace-editor-vue3";
+import "brace/mode/javascript";
+import "brace/theme/monokai";
 
 export default {
+    components: {
+        AceEditor
+    },
     setup() {
         const obj = reactive({
             jsonInput: '',
@@ -61,7 +67,13 @@ export default {
 
         return {
             obj,
-            parseData
+            parseData,
+            editor: null,
+            options: {
+                showPrintMargin: false,
+            },
+            lang: "javascript",
+            theme: "monokai",
         }
     }
 }

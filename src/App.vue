@@ -1,8 +1,8 @@
 <template>
 <div class="container-fluid">
-      <div class="d-flex justify-content-center">
+      <!-- <div class="d-flex justify-content-center">
         <img src='./assets/logo.png' width="150"/>
-      </div>
+      </div> -->
     <router-view />
 </div>
 </template>
