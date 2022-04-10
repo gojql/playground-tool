@@ -4,11 +4,11 @@
 </div>
 </template>
 
-<script lang="ts">
+<script>
 import QueryProcessor from '@/components/QueryProcessor.vue'
 
 export default {
-    name: 'Home',
+    name: 'Dashboard',
     components:{
         QueryProcessor
     }
