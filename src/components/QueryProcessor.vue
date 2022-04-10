@@ -8,7 +8,6 @@
             <span style="position:relative;font-size: 60px; top:12px">&#128269;</span>L }
       </div>
       <div style="width:100%"><hr>
-        <hr>
         <div style="font-weight: 800;    padding-bottom: 1rem;">Conditions</div>
          <ul style="list-style-type:none;">
             <li>#(...) : first Match</li>
