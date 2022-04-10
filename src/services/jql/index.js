@@ -1,8 +1,8 @@
-import http from '@/services/common-api-calls.js';
+import axios from '@/services/common-api-calls.js';
 
 class JQLApi {
-    getUser(id) {
-        return http.get(`/users/${id}`);
+    getUser(data) {
+        return axios.post('/parse',data);
     }
 }
 

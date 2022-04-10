@@ -7,17 +7,33 @@
                     <div style="margin:0px;font-size:60px;letter-spacing: -5px;font-weight:bolder;">{ J
             <span style="position:relative;font-size: 60px; top:12px">&#128269;</span>L }
       </div>
+      <div style="width:100%"><hr>
+        <hr>
+        <div style="font-weight: 800;    padding-bottom: 1rem;">Conditions</div>
+         <ul style="list-style-type:none;">
+            <li>#(...) : first Match</li>
+            <li>#(...)# : All Matches</li>
+        </ul><br>
+        <hr>
+        <div style="font-weight: 800;    padding-bottom: 1rem;">Modifiers</div>
+        <ul style="list-style-type:none;">
+            <li>@uppercase</li>
+            <li>@lowercase</li>
+            <li>@reverse</li>
+            <li>@sort</li>
+        </ul><br>
+      </div>
                 </div>
             </div>
             <div class="col py-3">
-                <h5>REGULAR EXPRESSION</h5>
+                <h5>Try it</h5>
                 <div class="row">
                     <div class="col">
                         <div class="input-group">
                             <div class="input-group-text">Query</div>
                             <input id="regex" type="text" class="form-control" placeholder="insert your regular expression here">
-                            <div id="submit-regex" class="input-group-text btn-primary rounded" @click.prevent="parseData">submit</div>
-                            <div id="copy-regex" class="input-group-text">copy</div>
+                            <div id="submit-regex" class="input-group-text btn-primary rounded" @click.prevent="parseData">Run</div>
+                            <div id="copy-regex" class="input-group-text"><img src='../../copy.png'/></div>
                         </div>
                     </div>
                 </div>
@@ -25,7 +41,7 @@
                     <div class="col-6">
                         <div class="p-3 border bg-light">
                             <div class="col" style="height:75vh">
-                                <label class="form-label" for="jsonInput">JSON String</label>
+                                <label class="form-label" for="jsonInput">JSON</label>
                                 <AceEditor v-model:codeContent="obj.jsonInput" v-model:editor="editor" :options="options" :lang="lang" width="100%" height="95%" />
                             </div>
                         </div>
@@ -33,8 +49,8 @@
                     <div class="col-6">
                         <div class="p-3 border bg-light">
                             <div class="col" style="height:75vh">
-                                <label class="form-label" for="jsonInput">Query Result</label>
-                                <pre>{{obj.jsonOutput}}</pre>
+                                <label class="form-label" for="jsonInput">Result</label>
+                                <AceEditor class="result"  v-model:editor="editor" :options="options" :lang="lang" width="100%" height="95%" />
                             </div>
                         </div>
                     </div>
@@ -51,7 +67,15 @@ import { reactive } from "vue";
 import AceEditor from "ace-editor-vue3";
 import "brace/mode/javascript";
 import "brace/theme/monokai";
-//import JQLService from '@/services/jql'
+//import JQLService from "@/services/jql/index.js";
+import axios from "axios";
+
+/*axios.create({
+  baseURL: "http://127.0.0.1:3000",
+  headers: {
+    "Content-type": "application/json",
+  },
+});*/
 
 export default {
   components: {
@@ -64,14 +88,19 @@ export default {
     });
 
     const parseData = () => {
-      /* JQLService.getUser(obj.jsonInput)
-                .then(response => {
-                    obj.jsonOutput = response.data;
-                    console.log(obj.jsonOutput);
-                })
-                .catch(e => {
-                    console.log(e);
-                }); */
+      /*axios
+        .post("/parse", { query: "a", json: '{"a": "1"}' })
+        .then((response) => {
+          obj.jsonOutput = response.data;
+          console.log(obj.jsonOutput);
+        })
+        .catch((e) => {
+          console.log(e);
+        });*/
+      axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+      axios.get("http://127.0.0.1:3000/parse").then((response) => {
+        console.log(response);
+      });
     };
 
     return {

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "https://reqres.in/api",
+    baseURL: "http://127.0.0.1:3000",
     headers: {
         "Content-type": "application/json"
     }
