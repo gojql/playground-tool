@@ -4,7 +4,9 @@
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
-                    Left Side Content
+                    <div style="margin:0px;font-size:60px;letter-spacing: -5px;font-weight:bolder;">{ J
+            <span style="position:relative;font-size: 60px; top:12px">&#128269;</span>L }
+      </div>
                 </div>
             </div>
             <div class="col py-3">
@@ -44,52 +46,51 @@
 </template>
 
 <script lang="ts">
-import {
-    reactive
-} from 'vue';
+import { reactive } from "vue";
+
 import AceEditor from "ace-editor-vue3";
 import "brace/mode/javascript";
 import "brace/theme/monokai";
-import JQLService from '@/services/jql'
+//import JQLService from '@/services/jql'
 
 export default {
-    components: {
-        AceEditor
-    },
-    setup() {
-        const obj = reactive({
-            jsonInput: '',
-            jsonOutput: ''
-        });
+  components: {
+    AceEditor,
+  },
+  setup() {
+    const obj = reactive({
+      jsonInput: "",
+      jsonOutput: "",
+    });
 
-        const parseData = () => {
-            JQLService.getUser(obj.jsonInput)
+    const parseData = () => {
+      /* JQLService.getUser(obj.jsonInput)
                 .then(response => {
                     obj.jsonOutput = response.data;
                     console.log(obj.jsonOutput);
                 })
                 .catch(e => {
                     console.log(e);
-                });
-        }
+                }); */
+    };
 
-        return {
-            obj,
-            parseData,
-            editor: null,
-            options: {
-                showPrintMargin: false,
-            },
-            lang: "javascript",
-            theme: "monokai",
-        }
-    }
-}
+    return {
+      obj,
+      parseData,
+      editor: null,
+      options: {
+        showPrintMargin: false,
+      },
+      lang: "javascript",
+      theme: "monokai",
+    };
+  },
+};
 </script>
 
 <style scoped>
 textarea {
-    resize: none;
-    width: 100%;
+  resize: none;
+  width: 100%;
 }
 </style>
